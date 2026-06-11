@@ -1,0 +1,15 @@
+[
+  {
+    "id_chofer": "101",
+    "nombre_chofer": "Carlos García",
+    "licencia": "ABC-1234",
+    "hora_entrada": "08:00:00",
+    "hora_salida": "17:00:00",
+    "estado_chofer": "activo",
+    "id_mantenimiento": "50",
+    "fecha_mantenimiento": "2023-11-01",
+    "descripcion": "Cambio de aceite y filtros",
+    "estado_mantenimiento": "completado",
+    "numero_carrito": "CAR-20"
+  }
+]
