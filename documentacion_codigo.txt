@@ -1,0 +1,110 @@
+Documentación del proyecto Go - modulo3_go
+
+1. Estructura general
+
+- cmd/api/main.go
+  - Punto de entrada del servidor.
+  - Inicializa la base de datos SQLite con storage.NewSQLiteStorage("modulo3_go.db").
+  - Crea el servidor HTTP con handlers.NewServer(store).
+  - Arranca el servidor en un puerto fijo, actualmente ":8085".
+
+- internal/handlers/
+  - server.go
+    - Define el servidor HTTP y las rutas.
+    - Registra:
+      - /      → rootHandler
+      - /choferes → choferesHandler
+      - /choferes/{id} → choferHandler
+      - /mantenimientos → mantenimientosHandler
+      - /mantenimientos/{id} → mantenimientoHandler
+    - rootHandler devuelve los registros reales de choferes y mantenimientos.
+  - chofer.go
+    - Implementa las operaciones CRUD para choferes.
+    - Métodos:
+      - listChoferes
+      - createChofer
+      - getChofer
+      - updateChofer
+      - deleteChofer
+  - mantenimiento.go
+    - Implementa las operaciones CRUD para mantenimientos.
+    - Métodos:
+      - listMantenimientos
+      - createMantenimiento
+      - getMantenimiento
+      - updateMantenimiento
+      - deleteMantenimiento
+  - respond.go
+    - Funciones auxiliares para JSON:
+      - JSON(w, status, value)
+      - Error(w, status, message)
+      - DecodeJSON(r, dst)
+
+- internal/models/
+  - chofer.go
+    - Estructura Chofer con campos JSON:
+      - id_chofer
+      - nombre_chofer
+      - licencia
+      - telefono
+      - hora_entrada
+      - hora_salida
+      - estado_chofer
+  - mantenimiento.go
+    - Estructura Mantenimiento con campos JSON:
+      - id_mantenimiento
+      - fecha_mantenimiento
+      - descripcion
+      - estado_mantenimiento
+      - numero_carrito
+
+- internal/storage/
+  - sqlite.go
+    - Implementa el almacenamiento SQLite.
+    - Funciones principales:
+      - NewSQLiteStorage(dsn)
+      - createTables(db)
+      - seedData(db)
+      - CreateChofer
+      - ListChoferes
+      - GetChofer
+      - UpdateChofer
+      - DeleteChofer
+      - CreateMantenimiento
+      - ListMantenimientos
+      - GetMantenimiento
+      - UpdateMantenimiento
+      - DeleteMantenimiento
+    - seedData carga `sample_data.json` la primera vez que la base de datos se inicializa, si no hay choferes.
+
+- sample_data.json
+  - Contiene datos de prueba reales para chofer y mantenimiento.
+  - Se cargan automáticamente en la base de datos en la primera migración si la tabla de choferes está vacía.
+
+2. Cómo ejecutar
+
+1. Abrir terminal en la carpeta del proyecto.
+2. Ejecutar:
+   go run ./cmd/api
+3. Abrir el navegador en:
+   http://localhost:8085/
+
+3. Endpoints disponibles
+
+- GET /            : Devuelve colecciones de choferes y mantenimientos.
+- GET /choferes    : Lista todos los choferes.
+- POST /choferes   : Crea un nuevo chofer.
+- GET /choferes/{id}      : Obtiene un chofer por ID.
+- PUT /choferes/{id}      : Actualiza un chofer por ID.
+- DELETE /choferes/{id}   : Elimina un chofer por ID.
+- GET /mantenimientos     : Lista todos los mantenimientos.
+- POST /mantenimientos    : Crea un nuevo mantenimiento.
+- GET /mantenimientos/{id}: Obtiene un mantenimiento por ID.
+- PUT /mantenimientos/{id}: Actualiza un mantenimiento por ID.
+- DELETE /mantenimientos/{id}: Elimina un mantenimiento por ID.
+
+4. Notas importantes
+
+- El puerto puede cambiar si está ocupado. Ajusta `cmd/api/main.go` si necesitas otro.
+- El JSON de salida del root ya no incluye el campo `message`.
+- El campo `telefono` de la tabla choferes existe en el modelo, pero no se muestra en el root porque se devuelve solo la vista solicitada.

@@ -58,18 +58,17 @@ func (s *Server) rootHandler(w http.ResponseWriter, r *http.Request) {
 	mantenimientosOut := make([]map[string]any, 0, len(mantenimientos))
 	for _, m := range mantenimientos {
 		mantenimientosOut = append(mantenimientosOut, map[string]any{
-			"id_mantenimiento":   m.ID,
-			"fecha_mantenimiento": m.FechaMantenimiento,
-			"descripcion":         m.Descripcion,
+			"id_mantenimiento":     m.ID,
+			"fecha_mantenimiento":  m.FechaMantenimiento,
+			"descripcion":          m.Descripcion,
 			"estado_mantenimiento": m.EstadoMantenimiento,
-			"numero_carrito":      m.NumeroCarrito,
+			"numero_carrito":       m.NumeroCarrito,
 		})
 	}
 
 	JSON(w, http.StatusOK, map[string]any{
-		"message":         "API de choferes y mantenimientos",
-		"choferes":        choferesOut,
-		"mantenimientos":  mantenimientosOut,
+		"choferes":       choferesOut,
+		"mantenimientos": mantenimientosOut,
 	})
 }
 

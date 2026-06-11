@@ -1,0 +1,33 @@
+UNIVERSIDAD LAICA “ELOY ALFARO" DE MANABI
+
+CARRERA
+Tecnología de la Información
+
+PARALELO
+"B"
+
+MATERIA
+Aplicaciones Web II
+
+Tema
+Proyecto Semestral
+
+AUTORES
+Cuellar Ortiz Eddy Alexis
+Franco Castillo John Alan
+Moreira Carvajal Luis Ricardo
+
+
+Autor: Alan Franco
+
+Problema 1: organización inicial de la arquitectura del proyecto.
+Al comienzo fue necesario definir una estructura de carpetas que permitiera separar correctamente los diferentes componentes de la aplicación. Se creó una arquitectura basada en dominios, handlers, middleware y almacenamiento para facilitar el mantenimiento y la escalabilidad del proyecto.
+
+Problema 2: definición de las entidades principales del sistema.
+Se necesitaba representar la información de los choferes y los mantenimientos de manera organizada. Para solucionarlo se crearon las estructuras Chofer y Mantenimiento, incluyendo todos los campos necesarios para gestionar los datos dentro de la aplicación.
+
+Problema 3: preparación de la base para futuras funciones.
+Aunque inicialmente solo se contaba con la estructura básica del proyecto, era necesario dejar preparados los módulos de handlers, middleware y almacenamiento para futuras implementaciones. Se crearon los archivos y paquetes correspondientes para facilitar el desarrollo posterior de las operaciones CRUD y la integración con una base de datos.
+
+¿Qué se sintió distinto programar en Go frente a los lenguajes que ya conocías?
+Go se sintió como un lenguaje más simple y directo en comparación con otros lenguajes de programación. Su sintaxis es fácil de leer, la organización por paquetes ayuda a mantener el código ordenado y la cantidad reducida de características complejas permite concentrarse más en la lógica del programa. Además, la estructura de proyectos en Go fomenta buenas prácticas desde etapas tempranas del desarrollo.
